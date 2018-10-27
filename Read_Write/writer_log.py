@@ -10,6 +10,7 @@
 
 import sys
 from hdfs.client import Client
+import time
 
 # 设置utf-8模式
 reload(sys)
@@ -75,9 +76,14 @@ def list(client, hdfs_path):
 
 
 # client = Client(url, root=None, proxy=None, timeout=None, session=None)
-client = Client("http://118.25.144.147:50070")
-with client.read("/aaa") as reader:
-    print reader.read()
+client = Client("http://localhost:50070")
+
+for i in range(10):
+    append_to_hdfs(client, '/aaa', 'nice you' + '\n')
+    time.sleep(2)
+
+    with client.read("/aaa") as reader:
+        print len(reader.readlines())
 
 
 
