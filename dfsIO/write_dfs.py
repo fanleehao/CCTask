@@ -70,18 +70,20 @@ class MyClient(object):
 
 
 if __name__ == '__main__':
-    # client = MyClient("http://118.25.144.147:50070")
+    client = MyClient("http://118.25.144.147:50070")
     # print client.list('/')
-    with open("../test_log.txt", 'w') as f:
-        for i in range(10):
-            tup = {}
-            avgPrice = random.uniform(1500, 4000)
-            district = random.choice(("GuLou", "YuHuaTai", "JianYe", "QiXia", "XuanWu", "JiangNing", "QinHuai"))
-            tup[district] = avgPrice
-            f.write(str(tup) + '\n')
+    for j in range(2):
+        filename = "../testfile" + str(j) + ".txt";
+        with open(filename, 'w') as f:
+            for i in range(100):
+                avgPrice = random.uniform(150, 400)
+                district = random.choice(("GuLou", "YuHuaTai", "JianYe", "QiXia", "XuanWu", "JiangNing", "QinHuai"))
+                f.write(district + " " + str(avgPrice) + '\n')
 
-    # 写hdfs文件
+        # 写hdfs文件
+        client.put_to_hdfs(filename, '/')
 
+        time.sleep(30)
 
 
 
