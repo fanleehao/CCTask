@@ -45,7 +45,7 @@ class MyClient(object):
 
     # 上传文件到hdfs
     def put_to_hdfs(self, local_path, hdfs_path):
-        self.client.upload(hdfs_path, local_path, cleanup=True)
+        self.client.upload(hdfs_path, local_path, overwrite=True, cleanup=True)
 
     # 从hdfs获取文件到本地
     def get_from_hdfs(self, hdfs_path, local_path):
@@ -70,10 +70,11 @@ class MyClient(object):
 
 
 if __name__ == '__main__':
-    client = MyClient("http://localhost:50070")
+    client = MyClient("http://master:50070")
     # print client.list('/')
-    for j in range(5):
-        filename = "../testfile5" + str(j) + ".txt";
+
+    for j in range(10):
+        filename = "../10282157" + str(j) + ".txt";
         with open(filename, 'w') as f:
             for i in range(100):
                 avgPrice = random.uniform(150, 400)
@@ -82,8 +83,8 @@ if __name__ == '__main__':
 
         # 写hdfs文件
         print "start to list", j
-	#client.put_to_hdfs(filename, '/')
-        print client.list("/")
+	client.put_to_hdfs(filename, '/')
+        #print client.list("/")
 	print "success list", j
         time.sleep(10)
 	print "sleep 10s done!"
