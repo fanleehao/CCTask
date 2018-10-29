@@ -20,7 +20,7 @@ sys.setdefaultencoding("utf-8")
 class MyClient(object):
 
     def __init__(self, dfs_url):
-        self.client = Client(dfs_url)
+        self.client = Client(dfs_url, timeout=200)
 
     # 读取hdfs文件内容,将每行存入数组返回
     def read_hdfs_file(self, filename):
@@ -70,10 +70,10 @@ class MyClient(object):
 
 
 if __name__ == '__main__':
-    client = MyClient("http://118.25.144.147:50070")
+    client = MyClient("http://localhost:50070")
     # print client.list('/')
-    for j in range(2):
-        filename = "../testfile" + str(j) + ".txt";
+    for j in range(5):
+        filename = "../testfile5" + str(j) + ".txt";
         with open(filename, 'w') as f:
             for i in range(100):
                 avgPrice = random.uniform(150, 400)
@@ -81,9 +81,12 @@ if __name__ == '__main__':
                 f.write(district + " " + str(avgPrice) + '\n')
 
         # 写hdfs文件
-        client.put_to_hdfs(filename, '/')
-
-        time.sleep(30)
+        print "start to list", j
+	#client.put_to_hdfs(filename, '/')
+        print client.list("/")
+	print "success list", j
+        time.sleep(10)
+	print "sleep 10s done!"
 
 
 
