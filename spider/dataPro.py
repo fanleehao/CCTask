@@ -17,10 +17,10 @@ if __name__ == '__main__':
     df_sample = df.sample(frac=1)
     # df_to_save.to_csv('../data/result.csv', index=False, header=None)
     # print(df_to_save.shape)   (23578, 2)
-    width = df.shape[0] // 20
+    width = df.shape[0] // 5
     # print(width)
     j = 0
-    for i in range(20):
+    for i in range(5):
         df_to_save = df_sample[j:j + width]
         j = j + width
         df_to_save.to_csv('../data/dataSet' + str(i) + '.csv', index=False, header=None)
