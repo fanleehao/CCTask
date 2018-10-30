@@ -73,13 +73,13 @@ if __name__ == '__main__':
     client = MyClient("http://master:50070")
     # print client.list('/')
 
-    for j in range(10):
-        filename = "../10282157" + str(j) + ".txt";
-        with open(filename, 'w') as f:
-            for i in range(100):
-                avgPrice = random.uniform(150, 400)
-                district = random.choice(("GuLou", "YuHuaTai", "JianYe", "QiXia", "XuanWu", "JiangNing", "QinHuai"))
-                f.write(district + " " + str(avgPrice) + '\n')
+    for j in range(20):
+        filename = "../data/dataSet" + str(j) + ".csv";
+        #with open(filename, 'w') as f:
+        #    for i in range(100):
+        #        avgPrice = random.uniform(150, 400)
+        #        district = random.choice(("GuLou", "YuHuaTai", "JianYe", "QiXia", "XuanWu", "JiangNing", "QinHuai"))
+        #        f.write(district + " " + str(avgPrice) + '\n')
 
         # 写hdfs文件
         print "start to list", j
@@ -88,19 +88,3 @@ if __name__ == '__main__':
 	print "success list", j
         time.sleep(10)
 	print "sleep 10s done!"
-
-
-
-
-
-# print client.list("/")
-# move_or_rename(client,'/input/2.csv', '/input/emp.csv')
-# print read_hdfs_file(client, '/aaa')
-# put_to_hdfs(client,'/home/shutong/hdfs/1.csv','/input/')
-# append_to_hdfs(client, '/aaa', 'nice you' + '\n')
-# write_to_hdfs(client,'/input/emp.csv','我爱你'+'\n')
-# read_hdfs_file(client,'/input/emp.csv')
-# move_or_rename(client,'/input/emp.csv', '/input/2.csv')
-# mkdirs(client,'/input/python')
-# print list(client,'/input/')
-# chown(client,'/input/1.csv', 'root')
