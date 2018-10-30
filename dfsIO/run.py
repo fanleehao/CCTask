@@ -32,12 +32,12 @@ def updateFunction(newValues, runningCount):
         runningCount = 0
     return sum(newValues, runningCount)
 # 初始化化
-sc=SparkContext("local[2]","ziru")
+sc=SparkContext("local[2]","lianjia")
 ssc=StreamingContext(sc,35)
 ssc.checkpoint(".")
 # 计算
 lines = ssc.textFileStream("hdfs://master:9000/")
-arrays=lines.map(lambda line:line.split(" "))
+arrays=lines.map(lambda line:line.split(","))
 pairs=arrays.map(lambda word:(word[0],float(word[1])))
 pricesum=pairs.updateStateByKey(updateFunction)
 places=arrays.map(lambda word:(word[0],1))
