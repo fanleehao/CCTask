@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-'''
+"""
 @author: fanleehao
 @contact: fanleehao@gmail.com
 @file: write_dfs.py
 @time: 2018/10/28 14:47
 @desc: 写入hdfs文件
-'''
+"""
 
 import sys
 from hdfs.client import Client
@@ -15,6 +15,7 @@ import random
 
 reload(sys)
 sys.setdefaultencoding("utf-8")
+
 
 
 class MyClient(object):
@@ -73,6 +74,7 @@ if __name__ == '__main__':
     client = MyClient("http://master:50070")
     # print client.list('/')
 
+    # 20为写入文件个数
     for j in range(20):
         filename = "../data/dataSet" + str(j) + ".csv";
         #with open(filename, 'w') as f:
@@ -82,9 +84,9 @@ if __name__ == '__main__':
         #        f.write(district + " " + str(avgPrice) + '\n')
 
         # 写hdfs文件
-        print "start to list", j
-	client.put_to_hdfs(filename, '/')
+        print("Start to write " + str(j))
+        client.put_to_hdfs(filename, '/')
         #print client.list("/")
-	print "success list", j
+        print("Successfully Writen " + str(j))
         time.sleep(10)
-	print "sleep 10s done!"
+        print("sleep 10s done!")

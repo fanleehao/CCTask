@@ -1,4 +1,15 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
+"""
+@author: fenghaitao
+@contact: fenghaitao
+@file: lianjia.py
+@time: 2018/10/27 10:25
+@desc: 爬虫
+"""
+
+
 from enum import Enum
 import requests
 import time

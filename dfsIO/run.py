@@ -1,5 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+@author: fanhuiliang
+@contact:
+@file: run.py
+@time: 2018/10/28 15:58
+@desc: 执行Streaming计算和监控
+"""
 
 from pyspark import SparkContext
 from pyspark.streaming import StreamingContext
@@ -17,7 +24,7 @@ def tpprint(val, num=100):
         print("########################")
         # DATEFORMAT = '%Y%m%d'
         # today = datetime.datetime.now().strftime(DATEFORMAT)
-        myfile = open("/result.csv", "w")
+        myfile = open("/streaming_result.csv", "w")
         for record in taken[:num]:
             print(record)
             myfile.write(str(record) + "\n")
